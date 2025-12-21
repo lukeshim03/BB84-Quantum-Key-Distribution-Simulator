@@ -24,7 +24,7 @@ This project simulates the complete BB84 protocol including:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/bb84-simulator.git
+git clone https://github.com/lukeshim03/bb84-simulator.git
 cd bb84-simulator
 
 # Install dependencies
