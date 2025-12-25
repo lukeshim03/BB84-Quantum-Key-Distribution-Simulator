@@ -188,7 +188,7 @@ for length in [50, 100, 200, 500, 1000]:
 
 1. Bennett, C. H., & Brassard, G. (1984). "Quantum cryptography: Public key distribution and coin tossing." *Proceedings of IEEE International Conference on Computers, Systems and Signal Processing*, 175-179.
 
-2. Arthur Ekert, Tim Hosgood. qubit.guide
+2. Arthur Ekert, Tim Hosgood. [qubit.guide](https://qubit.guide/)
 
 ## Contributing
 
