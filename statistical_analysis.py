@@ -1,3 +1,14 @@
+# ==============================================================================
+# Statistical Analysis
+# ==============================================================================
+# Author: Eunseop Shim (Luke) | e1129864@u.nus.edu
+# National University of Singapore
+#
+# EDUCATIONAL RESOURCE ATTRIBUTION:
+# This implementation is based on the concepts presented in 'qubit.guide' 
+# by Professor Artur Ekert.
+#
+# ==============================================================================
 import numpy as np
 import matplotlib.pyplot as plt
 from bb84_simulator import BB84Protocol
