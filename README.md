@@ -1,4 +1,7 @@
 # BB84 Quantum Key Distribution Simulator(Classical Way)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Python](https://img.shields.io/badge/python-3.8%2B-blue)
+![Qiskit](https://img.shields.io/badge/qiskit-1.0%2B-purple)
 
 A comprehensive Python implementation of the BB84 quantum key distribution protocol, first proposed by Charles Bennett and Gilles Brassard in 1984.
 
