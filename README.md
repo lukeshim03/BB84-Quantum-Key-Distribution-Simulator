@@ -188,11 +188,7 @@ for length in [50, 100, 200, 500, 1000]:
 
 1. Bennett, C. H., & Brassard, G. (1984). "Quantum cryptography: Public key distribution and coin tossing." *Proceedings of IEEE International Conference on Computers, Systems and Signal Processing*, 175-179.
 
-2. Ekert, A. K. (1991). "Quantum cryptography based on Bell's theorem." *Physical Review Letters*, 67(6), 661.
-
-3. Shor, P. W., & Preskill, J. (2000). "Simple proof of security of the BB84 quantum key distribution protocol." *Physical Review Letters*, 85(2), 441.
-
-4. Scarani, V., et al. (2009). "The security of practical quantum key distribution." *Reviews of Modern Physics*, 81(3), 1301.
+2. Arthur Ekert, Tim Hosgood. qubit.guide
 
 ## Contributing
 
