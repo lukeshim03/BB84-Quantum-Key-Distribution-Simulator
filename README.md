@@ -207,4 +207,3 @@ Eunseop Shim(Luke)
 ## Acknowledgments
 
 - Inspired by the pioneering work of Charles Bennett and Gilles Brassard
-- Special thanks to Professor Artur Ekert for his foundational contributions to quantum cryptography
