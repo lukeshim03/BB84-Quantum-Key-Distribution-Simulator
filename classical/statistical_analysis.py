@@ -3,14 +3,10 @@
 # ==============================================================================
 # Author: Eunseop Shim (Luke) | e1129864@u.nus.edu
 # National University of Singapore
-#
-# EDUCATIONAL RESOURCE ATTRIBUTION:
-# This implementation is based on the concepts presented in 'qubit.guide' 
-# by Professor Artur Ekert.
-#
 # ==============================================================================
 import numpy as np
 import matplotlib.pyplot as plt
+import time
 from bb84_simulator import BB84Protocol
 from typing import Dict, List, Tuple
 
@@ -38,6 +34,7 @@ class BB84StatisticalAnalyzer:
         final_key_lengths = []
         security_status = []
         
+        start_time = time.time()
         for _ in range(num_simulations):
             bb84 = BB84Protocol(key_length, eavesdrop_prob)
             results = bb84.run()
@@ -47,9 +44,12 @@ class BB84StatisticalAnalyzer:
             final_key_lengths.append(results['final_key_length'])
             security_status.append(1 if results['is_secure'] else 0)
         
+        elapsed_total = time.time() - start_time
+        
         stats = {
             'eavesdrop_prob': eavesdrop_prob,
             'num_simulations': num_simulations,
+            'execution_time': elapsed_total,
             'error_rate_mean': np.mean(error_rates),
             'error_rate_std': np.std(error_rates),
             'error_rate_min': np.min(error_rates),
@@ -83,10 +83,26 @@ class BB84StatisticalAnalyzer:
         
         self.simulation_data = []
         
-        print("Running statistical analysis...")
+        print("\n" + "="*70)
+        print("BB84 STATISTICAL ANALYSIS (Classical)")
+        print("="*70)
+        print(f"Configuration:")
+        print(f"  - Key length: {key_length} qubits")
+        print(f"  - Simulations per test: {num_simulations}")
+        print("="*70)
+        
+        total_start_time = time.time()
+        
         for prob in eavesdrop_probs:
             print(f"Testing eavesdrop probability: {prob*100:.0f}%")
             stats = self.run_multiple_simulations(key_length, prob, num_simulations)
+        
+        total_time = time.time() - total_start_time
+        
+        print("="*70)
+        print(f"Analysis complete! Total time: {total_time:.1f}s")
+        print(f"Average time per eavesdrop probability: {total_time/len(eavesdrop_probs):.1f}s")
+        print("="*70)
         
         return self.simulation_data
     
@@ -97,12 +113,14 @@ class BB84StatisticalAnalyzer:
             return
         
         print("\n" + "="*70)
-        print("BB84 STATISTICAL ANALYSIS")
+        print("BB84 STATISTICAL ANALYSIS RESULTS")
         print("="*70)
         
         for stats in self.simulation_data:
-            print(f"\nEavesdrop Probability: {stats['eavesdrop_prob']*100:.0f}%")
+            print(f"Eavesdrop Probability: {stats['eavesdrop_prob']*100:.0f}%")
             print(f"Number of simulations: {stats['num_simulations']}")
+            if 'execution_time' in stats:
+                print(f"Execution time: {stats['execution_time']:.1f}s")
             print(f"Average error rate: {stats['error_rate_mean']:.2f}% ± {stats['error_rate_std']:.2f}%")
             print(f"Error rate range: [{stats['error_rate_min']:.2f}%, {stats['error_rate_max']:.2f}%]")
             print(f"Average sifted ratio: {stats['sifted_ratio_mean']*100:.1f}%")

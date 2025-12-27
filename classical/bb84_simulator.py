@@ -3,11 +3,6 @@
 # ==============================================================================
 # Author: Eunseop Shim (Luke) | e1129864@u.nus.edu
 # National University of Singapore
-#
-# EDUCATIONAL RESOURCE ATTRIBUTION:
-# This implementation is based on the concepts presented in 'qubit.guide' 
-# by Professor Artur Ekert.
-#
 # ==============================================================================
 import numpy as np
 import random
@@ -98,7 +93,7 @@ class BB84Protocol:
         return sifted_alice, sifted_bob, indices
     
     def estimate_error_rate(self, alice_bits: List[int], bob_bits: List[int],
-                           sample_ratio: float = 0.3) -> Tuple[float, int, int]:
+                           sample_ratio: float = 0.5) -> Tuple[float, int, int]:
         """
         Estimate error rate by sacrificing some bits
         
@@ -131,33 +126,27 @@ class BB84Protocol:
         Returns:
             Dictionary containing all results
         """
-        # Step 1: Alice prepares random bits and bases
         alice_bits = self.generate_random_bits(self.key_length)
         alice_bases = self.generate_random_bases(self.key_length)
         
-        # Step 2: Alice encodes and sends qubits (with potential eavesdropping)
         qubits = []
         for bit, basis in zip(alice_bits, alice_bases):
             qubit = self.encode_qubit(bit, basis)
             qubit = self.eavesdrop(qubit)
             qubits.append(qubit)
         
-        # Step 3: Bob chooses random bases and measures
         bob_bases = self.generate_random_bases(self.key_length)
         bob_bits = [self.measure_qubit(qubit, basis) 
                    for qubit, basis in zip(qubits, bob_bases)]
         
-        # Step 4: Sifting (basis reconciliation)
         sifted_alice, sifted_bob, sifted_indices = self.sift_key(
             alice_bits, alice_bases, bob_bits, bob_bases
         )
         
-        # Step 5: Error estimation
         error_rate, errors, sample_size = self.estimate_error_rate(
             sifted_alice, sifted_bob
         )
         
-        # Step 6: Generate final key
         sample_indices_used = random.sample(range(len(sifted_alice)), 
                                            min(sample_size, len(sifted_alice)))
         final_key = self.generate_final_key(sifted_alice, sample_indices_used)
@@ -191,16 +180,23 @@ class BB84Protocol:
             print("No simulation results. Run the protocol first.")
             return
         
-        print("\n" + "="*60)
+        res = self.results
+        print("="*70)
         print("BB84 QUANTUM KEY DISTRIBUTION - SIMULATION RESULTS")
-        print("="*60)
-        print(f"Initial qubits transmitted: {self.results['initial_length']}")
-        print(f"Sifted key length: {self.results['sifted_length']} "
-              f"({self.results['sifted_length']/self.results['initial_length']*100:.1f}%)")
-        print(f"Sample size for error check: {self.results['sample_size']}")
-        print(f"Errors detected: {self.results['errors']}/{self.results['sample_size']}")
-        print(f"Error rate: {self.results['error_rate']:.2f}%")
-        print(f"Final key length: {self.results['final_key_length']}")
-        print(f"Channel status: {'✓ SECURE' if self.results['is_secure'] else '✗ EAVESDROPPING DETECTED'}")
-        print(f"Final key (first 50 bits): {''.join(map(str, self.results['final_key'][:50]))}")
-        print("="*60 + "\n")
+        print("="*70)
+        print(f"Backend: Classical Simulator")
+        print(f"Initial qubits transmitted: {res['initial_length']}")
+        print(f"Sifted key length: {res['sifted_length']} "
+              f"({res['sifted_length']/res['initial_length']*100:.1f}%)")
+        print(f"Sample size for error check: {res['sample_size']}")
+        print(f"Errors detected: {res['errors']}/{res['sample_size']}")
+        print(f"Error rate: {res['error_rate']:.2f}%")
+        print(f"Final key length: {res['final_key_length']}")
+        print(f"Channel status: {'✓ SECURE' if res['is_secure'] else '✗ EAVESDROPPING DETECTED'}")
+        
+        if len(res['final_key']) > 0:
+            key_str = "".join(map(str, res['final_key'][:50]))
+            print(f"Final key (first 50 bits): {key_str}")
+        else:
+            print("Final key: (empty)")
+        print("="*70 + "\n")

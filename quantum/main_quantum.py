@@ -1,5 +1,5 @@
 # ==============================================================================
-# main_quantum.py
+# FILE: main_quantum.py
 # ==============================================================================
 # Author: Eunseop Shim (Luke) | e1129864@u.nus.edu
 # National University of Singapore
@@ -14,54 +14,42 @@ from statistical_analysis_qiskit import QuantumBB84StatisticalAnalyzer
 
 def demo_single_quantum_simulation():
     """Demonstrate a single Quantum BB84 simulation using Qiskit"""
-    print("\n=== SINGLE QUANTUM BB84 SIMULATION (QISKIT) ===\n")
+    print("\n" + "="*70)
+    print("SINGLE QUANTUM BB84 SIMULATION (QISKIT)")
+    print("="*70)
     
     # Scenario 1: No eavesdropping
-    print("Scenario 1: No eavesdropping")
+    print("\nScenario 1: No eavesdropping")
     q_bb84 = BB84QuantumProtocol(key_length=100, eavesdrop_prob=0.0)
     q_bb84.run()
     q_bb84.print_results()
     
     # Scenario 2: 25% eavesdropping probability
-    print("\nScenario 2: 25% eavesdropping probability")
+    print("Scenario 2: 25% eavesdropping probability")
     q_bb84 = BB84QuantumProtocol(key_length=100, eavesdrop_prob=0.25)
     q_bb84.run()
     q_bb84.print_results()
 
 def demo_quantum_statistical_analysis():
-    """Demonstrate statistical analysis for the Quantum implementation"""
-    print("\n=== QUANTUM STATISTICAL ANALYSIS ===\n")
     
     analyzer = QuantumBB84StatisticalAnalyzer()
     
     # Test different eavesdropping probabilities
-    # Note: num_simulations is set to 40 because quantum circuits take more 
-    # computational time to simulate than classical logic.
     eavesdrop_probs = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
     analyzer.analyze_eavesdrop_impact(
-        key_length=100,
+        key_length=1000, # Large key length for better statistics  
         eavesdrop_probs=eavesdrop_probs,
-        num_simulations=40 
+        num_simulations=500, 
+        shots=1000  # High shots for measurement accuracy
     )
     
-    # Generate the 4-panel plot (Error Rate, Key Length, Security, Distribution)
+    # Print statistics
+    analyzer.print_statistics()
+    
+    # Generate plots
     analyzer.plot_results()
 
 if __name__ == "__main__":
-    # 1. Individual Scenarios
-    print("\nScenario 1: No eavesdropping\n")
-    q1 = BB84QuantumProtocol(eavesdrop_prob=0.0)
-    q1.run()
-    q1.print_results()
-
-    print("\nScenario 2: 25% eavesdropping probability\n")
-    q2 = BB84QuantumProtocol(eavesdrop_prob=0.25)
-    q2.run()
-    q2.print_results()
-
-    # 2. Statistical Analysis
-    print("\n=== STATISTICAL ANALYSIS ===\n")
-    analyzer = QuantumBB84StatisticalAnalyzer()
-    analyzer.analyze_eavesdrop_impact(num_simulations=100)
-    analyzer.print_statistics()
-    analyzer.plot_results()
+    # Run both demos
+    demo_single_quantum_simulation()
+    demo_quantum_statistical_analysis()
