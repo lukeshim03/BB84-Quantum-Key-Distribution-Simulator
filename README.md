@@ -496,15 +496,13 @@ for length in key_lengths:
 ### Academic Papers
 1. Bennett, C. H., & Brassard, G. (1984). "Quantum cryptography: Public key distribution and coin tossing." *Proceedings of IEEE International Conference on Computers, Systems and Signal Processing*, 175-179.
 
-2. Ekert, A. (1991). "Quantum cryptography based on Bell's theorem." *Physical Review Letters*, 67(6), 661-663.
-
 ### Educational Resources
-3. Arthur Ekert, Tim Hosgood. [qubit.guide](https://qubit.guide/) - Interactive quantum computing education
+2. Arthur Ekert, Tim Hosgood. [qubit.guide](https://qubit.guide/) - Interactive quantum computing education
 
 ### Software Libraries
-5. [Qiskit Documentation](https://qiskit.org/documentation/) - Quantum computing framework
-6. [NumPy Documentation](https://numpy.org/) - Scientific computing library
-7. [Matplotlib Documentation](https://matplotlib.org/) - Plotting library
+3. [Qiskit Documentation](https://qiskit.org/documentation/) - Quantum computing framework
+4. [NumPy Documentation](https://numpy.org/) - Scientific computing library
+5. [Matplotlib Documentation](https://matplotlib.org/) - Plotting library
 
 ## Contributing
 
