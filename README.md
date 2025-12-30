@@ -10,12 +10,12 @@ A comprehensive Python implementation of the BB84 quantum key distribution proto
 
 This project provides two complete implementations of the BB84 protocol:
 
-### 🎯 **Classical Implementation**
+###  **Classical Implementation**
 - Simulates BB84 using classical bits and probability calculations
 - Fast execution for large-scale statistical analysis
 - Perfect for understanding protocol mechanics
 
-### ⚛️ **Quantum Implementation (Qiskit)**
+###  **Quantum Implementation (Qiskit)**
 - Uses actual quantum circuits and measurements
 - Simulates real quantum hardware behavior
 - Includes quantum noise and measurement statistics
@@ -458,11 +458,11 @@ for length in key_lengths:
 | Feature | Classical Implementation | Quantum Implementation |
 |---------|------------------------|----------------------|
 | **Execution Speed** | ⚡ Very Fast (CPU) | 🐌 Slower (Quantum Simulation) |
-| **Accuracy** | 📊 Probabilistic | 🔬 Quantum Mechanical |
-| **Statistical Analysis** | ✅ Full Support | ✅ Full Support |
-| **Visualization** | ✅ Automated Plots | ✅ Automated Plots |
-| **Scalability** | 🔝 Millions of runs | 📏 Hundreds of runs |
-| **Memory Usage** | 💾 Low | 💾 Higher (Quantum States) |
+| **Accuracy** |  Probabilistic |  Quantum Mechanical |
+| **Statistical Analysis** |  Full Support |  Full Support |
+| **Visualization** |  Automated Plots |  Automated Plots |
+| **Scalability** |  Millions of runs |  Hundreds of runs |
+| **Memory Usage** |  Low |  Higher (Quantum States) |
 
 ## Future Enhancements
 
