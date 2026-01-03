@@ -48,10 +48,6 @@ Both implementations include:
 ### Implementation Details
 - ✅ **Classical**: Fast probabilistic simulation
 - ✅ **Quantum**: Qiskit-based quantum circuit simulation
-- ✅ Configurable parameters (key length, eavesdrop probability, shots)
-- ✅ Batch processing for quantum efficiency
-- ✅ Ultra-fast mode for statistical analysis
-- ✅ Comprehensive logging and result formatting
 
 ## Installation
 
