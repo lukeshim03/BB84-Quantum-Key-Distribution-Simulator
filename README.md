@@ -453,7 +453,7 @@ for length in key_lengths:
 
 | Feature | Classical Implementation | Quantum Implementation |
 |---------|------------------------|----------------------|
-| **Execution Speed** | ⚡ Very Fast (CPU) | 🐌 Slower (Quantum Simulation) |
+| **Execution Speed** | Very Fast (CPU) | Slower (Quantum Simulation) |
 | **Accuracy** |  Probabilistic |  Quantum Mechanical |
 | **Statistical Analysis** |  Full Support |  Full Support |
 | **Visualization** |  Automated Plots |  Automated Plots |
